@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/tokopedia-assignment/static/css/main.0f913aa5.css",
+    "main.js": "/tokopedia-assignment/static/js/main.89eb92ae.js",
+    "index.html": "/tokopedia-assignment/index.html",
+    "main.0f913aa5.css.map": "/tokopedia-assignment/static/css/main.0f913aa5.css.map",
+    "main.89eb92ae.js.map": "/tokopedia-assignment/static/js/main.89eb92ae.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0f913aa5.css",
+    "static/js/main.89eb92ae.js"
+  ]
+}
