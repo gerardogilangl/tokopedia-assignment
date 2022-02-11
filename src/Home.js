@@ -9,6 +9,7 @@ class Home extends React.Component {
     this.state = {
       myPokemons: [],
       currentPage : '',
+      myPokemonsBtn : true,
       offset: 0
     };
     this.handlePokemons();
@@ -117,10 +118,31 @@ class Home extends React.Component {
           return {
             pokemons: pokemons,
             title: this.Capitalize("Pokemon List"),
-            sprite: null
+            sprite: null,
+            myPokemonsBtn: true,
           };
         });
       });
+  }
+
+  handleMyPokemons() {
+    this.setState({ myPokemonsBtn: false })
+    let pokemons = this.state.myPokemons.map(pokemon => {
+        return (
+          <div className="col-md-4 col-12 p-1">
+            <div className="btn btn-primary pokemon w-100 d-flex justify-content-start align-items-center" key={pokemon} onClick={() => this.handleClick(pokemon)}>
+              <span className="">{this.Capitalize(pokemon)}</span>
+            </div>
+          </div>);
+    });
+
+    this.setState(() => {
+      return {
+        pokemons: pokemons,
+        title: this.Capitalize("My Pokemons"),
+        sprite: null
+      };
+    });
   }
 
   handleCatch() {
@@ -131,8 +153,7 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <h5 className="fw-bold border-bottom border-dark pb-2">My Pokemons</h5>
-        <div>{this.state.myPokemons}</div>
+        {this.state.myPokemonsBtn ? <div className="fw-bold btn btn-dark pb-2 mb-2 col-12" onClick={() => this.handleMyPokemons()}>My Pokemons</div> : ''}
         <h5 className="fw-bold border-bottom border-dark pb-2">{this.state.title}</h5>
         <div className="containter">
           <div className="row px-3">
@@ -145,9 +166,11 @@ class Home extends React.Component {
             ))}*/ 
               this.state.pokemons
             }
+            {this.state.sprite ? <h5 className="px-0 pb-2 col-12 fw-bold border-bottom border-dark">Menu</h5> : ''}
             {this.state.sprite ? <button className="btn btn-success col-12 px-1 mb-1" onClick={() => this.handleCatch()}>Catch</button> : ''}
-            {this.state.sprite ? <button className="btn btn-dark col-12 px-1" onClick={() => this.handlePokemons()}>Pokemon List</button> : <button className="btn btn-primary col-2 ms-1" onClick={() => this.handlePrevClick()}>Prev</button>}
-            {this.state.sprite ? '' : <button className="btn btn-primary col-2 ms-1" onClick={() => this.handleNextClick()}>Next</button>}
+            {this.state.sprite ? '' : <div className="col-6 px-0 pe-1"><button className="btn btn-secondary w-100" onClick={() => this.handlePrevClick()}>Prev</button></div>}
+            {this.state.sprite ? '' : <div className="col-6 px-0 ps-1"><button className="btn btn-secondary w-100" onClick={() => this.handleNextClick()}>Next</button></div>}
+            <button className="btn btn-dark col-12 px-1 mt-1" onClick={() => this.handlePokemons()}>Pokemon List</button>
           </div>
         </div>
       </div>
